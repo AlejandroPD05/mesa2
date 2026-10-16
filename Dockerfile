@@ -37,6 +37,8 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 RUN useradd --system --create-home --shell /usr/sbin/nologin mesa2
 COPY --from=backend /app/backend/target/mesa2-*.jar app.jar
+# El usuario sin privilegios debe poder crear ./datos (H2 del perfil local).
+RUN chown -R mesa2:mesa2 /app
 USER mesa2
 
 # Salida "de fábrica": perfil local (H2 + datos demo). En el hosting se
