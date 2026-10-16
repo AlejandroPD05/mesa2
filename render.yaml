@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# Blueprint de Render (https://render.com) — plan gratuito.
+#
+#   1. Crea la base de datos PostgreSQL en Neon y copia su connection string.
+#   2. En Render: New → Blueprint → selecciona este repositorio.
+#   3. Rellena las variables marcadas con `sync: false` cuando te las pida:
+#      el secreto JWT (≥ 32 bytes) y los datos de conexión de Neon.
+#
+# El servicio construye la imagen con el Dockerfile del repositorio (la SPA ya
+# viaja dentro del jar) y usa /actuator/health como sonda de salud.
+# ---------------------------------------------------------------------------
+services:
+  - type: web
+    name: mesa2
+    runtime: docker
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      # Fuera del perfil `local` (que activa H2): usa la configuración de
+      # producción con las migraciones Flyway contra PostgreSQL.
+      - key: SPRING_PROFILES_ACTIVE
+        value: produccion
+      # El portal va por HTTPS: la cookie de sesión solo viaja segura.
+      - key: MESA2_COOKIE_SECURE
+        value: "true"
+      # Secretos que se piden al desplegar.
+      - key: MESA2_JWT_SECRET
+        sync: false
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false

@@ -215,6 +215,11 @@ típico (Render/Railway) con PostgreSQL gestionado (p. ej. Neon):
 Flyway aplica las migraciones en el primer arranque contra PostgreSQL; no hace
 falta ningún paso manual. El endpoint `GET /actuator/health` sirve de sonda.
 
+El repositorio incluye un **blueprint de Render** (`render.yaml`): en Render,
+*New → Blueprint*, selecciona el repositorio y rellena las variables anteriores
+cuando te las pida. En el plan gratuito el servicio se suspende tras un rato
+sin tráfico, así que el primer acceso del día puede tardar medio minuto.
+
 ---
 
 Hecho por **Alejandro Prieto Díez** como parte de su portfolio · universo RoyalTown.
