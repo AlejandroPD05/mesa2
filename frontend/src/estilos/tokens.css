@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Mesa 2.0 — design tokens
+   Un producto de soporte: superficies claras, azul corporativo de RoyalTown
+   y paleta semántica para estados del ticket (contrastes AA sobre claro).
+   ========================================================================== */
+
+:root {
+  /* Tipografía */
+  --fuente-base: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --fuente-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Colores base */
+  --color-fondo: #f2f5fb;
+  --color-fondo-alt: #e8edf7;
+  --color-superficie: #ffffff;
+  --color-borde: #d9e0ee;
+  --color-borde-fuerte: #b9c4dc;
+  --color-texto: #1b2436;
+  --color-texto-suave: #4f5f7a;
+
+  /* Marca */
+  --color-primario: #2b59d9;
+  --color-primario-oscuro: #1f43ac;
+  --color-primario-suave: #e7edfd;
+
+  /* Semánticos: texto sobre fondo suave, ambos con contraste AA */
+  --tono-info-texto: #1a51b8;
+  --tono-info-fondo: #e3ecfd;
+  --tono-progreso-texto: #5b2bb0;
+  --tono-progreso-fondo: #efe7fd;
+  --tono-aviso-texto: #8a4b00;
+  --tono-aviso-fondo: #fdf0d5;
+  --tono-exito-texto: #146c43;
+  --tono-exito-fondo: #ddf3e6;
+  --tono-peligro-texto: #a41d24;
+  --tono-peligro-fondo: #fbe4e5;
+  --tono-neutro-texto: #46536b;
+  --tono-neutro-fondo: #eceff6;
+
+  /* Formas y profundidad */
+  --radio-s: 8px;
+  --radio-m: 12px;
+  --sombra-1: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
+  --sombra-2: 0 4px 10px rgb(16 24 40 / 10%);
+
+  /* Rejilla de espaciado */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+
+  --ancho-max: 1180px;
+}
