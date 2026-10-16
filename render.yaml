@@ -4,7 +4,8 @@
 #   1. Crea la base de datos PostgreSQL en Neon y copia su connection string.
 #   2. En Render: New → Blueprint → selecciona este repositorio.
 #   3. Rellena las variables marcadas con `sync: false` cuando te las pida:
-#      el secreto JWT (≥ 32 bytes) y los datos de conexión de Neon.
+#      el secreto JWT (≥ 32 bytes) y las dos cadenas de conexión de Neon
+#      (`neon env pull`: la pooled y la directa).
 #
 # El servicio construye la imagen con el Dockerfile del repositorio (la SPA ya
 # viaja dentro del jar) y usa /actuator/health como sonda de salud.
@@ -23,12 +24,10 @@ services:
       # El portal va por HTTPS: la cookie de sesión solo viaja segura.
       - key: MESA2_COOKIE_SECURE
         value: "true"
-      # Secretos que se piden al desplegar.
+      # Secretos que se piden al desplegar: el JWT y las cadenas de Neon.
       - key: MESA2_JWT_SECRET
         sync: false
-      - key: SPRING_DATASOURCE_URL
+      - key: DATABASE_URL
         sync: false
-      - key: SPRING_DATASOURCE_USERNAME
-        sync: false
-      - key: SPRING_DATASOURCE_PASSWORD
+      - key: DATABASE_URL_UNPOOLED
         sync: false

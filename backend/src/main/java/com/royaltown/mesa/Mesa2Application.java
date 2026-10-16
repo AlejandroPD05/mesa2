@@ -1,5 +1,7 @@
 package com.royaltown.mesa;
 
+import com.royaltown.mesa.config.NeonVariables;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
@@ -17,6 +19,9 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 public class Mesa2Application {
 
     public static void main(String[] args) {
+        // Si el entorno trae DATABASE_URL (Neon), se traduce aquí mismo a la
+        // configuración JDBC: pooled para la app, directa para Flyway.
+        NeonVariables.aplicar(args);
         SpringApplication.run(Mesa2Application.class, args);
     }
 }

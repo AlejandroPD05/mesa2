@@ -206,11 +206,16 @@ típico (Render/Railway) con PostgreSQL gestionado (p. ej. Neon):
 | Variable | Valor |
 | --- | --- |
 | `SPRING_PROFILES_ACTIVE` | `produccion` (cualquier perfil que no sea `local`) |
-| `SPRING_DATASOURCE_URL` | `jdbc:postgresql://…/mesa2?sslmode=require` |
-| `SPRING_DATASOURCE_USERNAME` / `…_PASSWORD` | credenciales de Neon |
+| `DATABASE_URL` | cadena **pooled** de Neon (tráfico de la aplicación) |
+| `DATABASE_URL_UNPOOLED` | cadena **directa** de Neon (migraciones de Flyway) |
 | `MESA2_JWT_SECRET` | secreto aleatorio de ≥ 32 bytes |
 | `MESA2_COOKIE_SECURE` | `true` (el portal va por HTTPS) |
 | `PORT` | lo inyecta la plataforma; la app lo respeta |
+
+También valen las variables clásicas `SPRING_DATASOURCE_URL` / `…_USERNAME` /
+`…_PASSWORD`; si están definidas, tienen prioridad sobre las de Neon. Con las
+variables de Neon la aplicación usa la cadena **pooled** para el tráfico y la
+**directa** para Flyway: las migraciones no deben pasar por el pooler.
 
 Flyway aplica las migraciones en el primer arranque contra PostgreSQL; no hace
 falta ningún paso manual. El endpoint `GET /actuator/health` sirve de sonda.
@@ -219,6 +224,21 @@ El repositorio incluye un **blueprint de Render** (`render.yaml`): en Render,
 *New → Blueprint*, selecciona el repositorio y rellena las variables anteriores
 cuando te las pida. En el plan gratuito el servicio se suspende tras un rato
 sin tráfico, así que el primer acceso del día puede tardar medio minuto.
+
+### Base de datos en Neon (desarrollo)
+
+El repositorio está vinculado a un proyecto de Neon: `neon.ts` declara la
+política de la rama y la CLI deja las cadenas de conexión en `.env.local`.
+
+```bash
+neon login                                   # una vez
+neon env pull                                # refresca DATABASE_URL(_UNPOOLED)
+npx neon-env run -- java -jar backend/target/mesa2-1.0.0.jar
+```
+
+`neon-env run` inyecta las variables de la rama en el proceso, así que el jar
+apunta a Neon sin configurar nada más. La semilla de demostración se carga sola
+la primera vez que Flyway aplica las migraciones.
 
 ---
 

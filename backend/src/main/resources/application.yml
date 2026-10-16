@@ -2,6 +2,8 @@ spring:
   application:
     name: mesa2
   datasource:
+    # Con Neon basta tener DATABASE_URL / DATABASE_URL_UNPOOLED en el entorno
+    # (NeonVariables las traduce); estas variables son la vía clásica.
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mesa2}
     username: ${SPRING_DATASOURCE_USERNAME:mesa2}
     password: ${SPRING_DATASOURCE_PASSWORD:mesa2}
