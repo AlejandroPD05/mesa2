@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: mesa2
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mesa2}
+    username: ${SPRING_DATASOURCE_USERNAME:mesa2}
+    password: ${SPRING_DATASOURCE_PASSWORD:mesa2}
+  jpa:
+    # El esquema lo gobierna Flyway; Hibernate no lo toca.
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:8080}
+  # Detrás del proxy del hosting (Render/Railway) para reconstruir bien la URL.
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+mesa2:
+  jwt:
+    # En producción se inyecta MESA2_JWT_SECRET (mínimo 32 bytes).
+    secreto: ${MESA2_JWT_SECRET:desarrollo-solo-mesa2-cambia-este-secreto-en-produccion}
+    horas-expiracion: ${MESA2_JWT_HORAS:12}
+  cookie:
+    nombre: mesa2_sesion
+    # true en producción (requiere HTTPS).
+    secure: ${MESA2_COOKIE_SECURE:false}

@@ -1,0 +1,27 @@
+# Perfil de tests: H2 en modo PostgreSQL cargando las MISMAS migraciones que
+# producción. Si el esquema se rompe, los tests se rompen.
+spring:
+  datasource:
+    url: jdbc:h2:mem:mesa2;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  flyway:
+    enabled: true
+
+mesa2:
+  jwt:
+    secreto: secreto-solo-para-tests-mesa2-con-mas-de-32-bytes
+    horas-expiracion: 2
+  cookie:
+    nombre: mesa2_sesion
+    secure: false
+
+logging:
+  level:
+    org.hibernate.SQL: warn
+    org.springframework.test: warn

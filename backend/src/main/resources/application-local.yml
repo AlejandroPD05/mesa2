@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------
+# Perfil `local`: Mesa 2.0 completa (SPA + API + datos de demostración) sin
+# instalar nada más que Java. La base de datos es un fichero H2 en modo
+# PostgreSQL; Flyway aplica las MISMAS migraciones que en producción.
+#
+#   mvn spring-boot:run -Dspring-boot.run.profiles=local
+#   (o)  java -jar target/mesa2-1.0.0.jar --spring.profiles.active=local
+#
+# El fichero de datos queda en ./datos/mesa2.mv.db relativo al directorio
+# desde el que se arranca. Bórralo si quieres empezar de cero.
+# ---------------------------------------------------------------------------
+spring:
+  datasource:
+    url: jdbc:h2:file:./datos/mesa2;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  flyway:
+    enabled: true
+
+mesa2:
+  jwt:
+    # Solo para desarrollo local; en producción se exige MESA2_JWT_SECRET.
+    secreto: secreto-local-mesa2-con-mas-de-treinta-y-dos-bytes
+    horas-expiracion: 12
+  cookie:
+    nombre: mesa2_sesion
+    secure: false
