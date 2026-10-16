@@ -8,9 +8,12 @@ soporte trabaja en una bandeja técnica con SLA, notas internas e informes.
 Es el compañero web del CLI del repositorio `ticketing` (mismo dominio, misma
 semilla de datos) y forma parte del portfolio de **Alejandro Prieto Díez**.
 
+**Demo en vivo:** [mesa2.onrender.com](https://mesa2.onrender.com) (plan gratuito
+de Render: el primer acceso tras un rato inactivo puede tardar ~1 min).
+
 - **Backend**: Java 21 · Spring Boot 3.5 · Spring Security (JWT en cookie httpOnly) · Spring Data JPA · Flyway · PostgreSQL (H2 modo PostgreSQL en tests y modo local)
 - **Frontend**: React 19 · TypeScript · Vite · TanStack Query · react-markdown · CSS propio con tokens de diseño (accesibilidad AA, `prefers-reduced-motion`)
-- **Calidad**: 25 tests de API de punta a punta + 22 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
+- **Calidad**: 35 tests de API de punta a punta + 22 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
 
 ---
 
@@ -104,7 +107,7 @@ mesa2/
 │   ├── src/main/resources/
 │   │   ├── db/migration/     V1 esquema · V2 semilla · V3 centro de ayuda (Flyway)
 │   │   └── application*.yml  config por perfil (local/tests) y variables de entorno
-│   └── src/test/java/…       25 tests de API (MockMvc sobre las migraciones reales)
+│   └── src/test/java/…       35 tests de API (MockMvc sobre las migraciones reales)
 ├── frontend/                 SPA React + TypeScript
 │   └── src/{api,componentes,contexto,paginas,rutas,utils,estilos,prueba}
 ├── Dockerfile                imagen de producción (la SPA vive dentro del jar)
@@ -188,7 +191,7 @@ o `transicionesValidas` cuando un cambio de estado no está permitido.
 ## Tests
 
 ```bash
-cd backend && mvn test          # 25 tests de API (Auth, Tickets, KB, Informes)
+cd backend && mvn test          # 35 tests de API (Auth, Tickets, KB, Informes)
 cd frontend && npm test         # 22 tests (utilidades, cliente HTTP, insignias)
 ```
 
