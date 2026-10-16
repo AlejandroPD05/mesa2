@@ -1,31 +1,44 @@
 /* ==========================================================================
    Mesa 2.0 — design tokens
-   Un producto de soporte: superficies claras, azul corporativo de RoyalTown
-   y paleta semántica para estados del ticket (contrastes AA sobre claro).
+   Un producto de soporte con el verde corporativo de RoyalTown como acento
+   (el mismo del portfolio) y paleta semántica para estados del ticket
+   (contrastes AA sobre claro). El tema oscuro redefine los mismos tokens
+   bajo `html.tema-oscuro`, así que los componentes giran solos.
    ========================================================================== */
 
 :root {
+  color-scheme: light;
+
   /* Tipografía */
   --fuente-base: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --fuente-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Colores base */
-  --color-fondo: #f2f5fb;
-  --color-fondo-alt: #e8edf7;
+  --color-fondo: #f2faf5;
+  --color-fondo-alt: #e8f4ec;
   --color-superficie: #ffffff;
-  --color-borde: #d9e0ee;
-  --color-borde-fuerte: #b9c4dc;
-  --color-texto: #1b2436;
-  --color-texto-suave: #4f5f7a;
+  --color-borde: #d3e5da;
+  --color-borde-fuerte: #a9ccb8;
+  --color-texto: #10231a;
+  --color-texto-suave: #2e4b3d;
 
   /* Marca */
-  --color-primario: #2b59d9;
-  --color-primario-oscuro: #1f43ac;
-  --color-primario-suave: #e7edfd;
+  --color-primario: #0b7a3c;
+  --color-primario-oscuro: #085c2c;
+  --color-primario-suave: #e3f3e9;
+  --color-sobre-primario: #ffffff;
+  --degradado-marca: linear-gradient(135deg, #0b7a3c, #0a8542);
+  --degradado-heroe: linear-gradient(135deg, #073d1e, #0a6b35 45%, #0b7a3c);
+  --heroe-suave: #eafaf0;
+  --degradado-barra: linear-gradient(90deg, #0b7a3c, #14a457);
+
+  /* Código (bloques de los artículos) */
+  --color-codigo-fondo: #0d1a13;
+  --color-codigo-texto: #dcefe2;
 
   /* Semánticos: texto sobre fondo suave, ambos con contraste AA */
-  --tono-info-texto: #1a51b8;
-  --tono-info-fondo: #e3ecfd;
+  --tono-info-texto: #0e6e68;
+  --tono-info-fondo: #dbf1ee;
   --tono-progreso-texto: #5b2bb0;
   --tono-progreso-fondo: #efe7fd;
   --tono-aviso-texto: #8a4b00;
@@ -34,8 +47,9 @@
   --tono-exito-fondo: #ddf3e6;
   --tono-peligro-texto: #a41d24;
   --tono-peligro-fondo: #fbe4e5;
-  --tono-neutro-texto: #46536b;
-  --tono-neutro-fondo: #eceff6;
+  --tono-neutro-texto: #41584a;
+  --tono-neutro-fondo: #e9f0eb;
+  --color-peligro-hover: #8c161c;
 
   /* Formas y profundidad */
   --radio-s: 8px;
@@ -53,4 +67,51 @@
   --esp-7: 3rem;
 
   --ancho-max: 1180px;
+}
+
+/* Tema oscuro: la misma estructura con una paleta nocturna verde. */
+html.tema-oscuro {
+  color-scheme: dark;
+
+  /* Colores base */
+  --color-fondo: #04100a;
+  --color-fondo-alt: #081a12;
+  --color-superficie: #0c1f16;
+  --color-borde: #1d4531;
+  --color-borde-fuerte: #2f6b4c;
+  --color-texto: #ffffff;
+  --color-texto-suave: #cfe3d7;
+
+  /* Marca */
+  --color-primario: #6fffb0;
+  --color-primario-oscuro: #3fe28a;
+  --color-primario-suave: #123526;
+  --color-sobre-primario: #00110a;
+  --degradado-marca: linear-gradient(135deg, #6fffb0, #3fe28a);
+  --degradado-heroe: linear-gradient(135deg, #03230f, #085c2c 45%, #0b7a3c);
+  --heroe-suave: #eafaf0;
+  --degradado-barra: linear-gradient(90deg, #3fe28a, #6fffb0);
+
+  /* Código (bloques de los artículos) */
+  --color-codigo-fondo: #041009;
+  --color-codigo-texto: #dcefe2;
+
+  /* Semánticos: texto claro sobre fondo translúcido, ambos AA */
+  --tono-info-texto: #7fe0d6;
+  --tono-info-fondo: rgb(127 224 214 / 14%);
+  --tono-progreso-texto: #cdb4ff;
+  --tono-progreso-fondo: rgb(205 180 255 / 14%);
+  --tono-aviso-texto: #f5c76e;
+  --tono-aviso-fondo: rgb(245 199 110 / 14%);
+  --tono-exito-texto: #7ee2a8;
+  --tono-exito-fondo: rgb(126 226 168 / 14%);
+  --tono-peligro-texto: #ff9aa2;
+  --tono-peligro-fondo: rgb(255 154 162 / 14%);
+  --tono-neutro-texto: #c3d6cb;
+  --tono-neutro-fondo: rgb(195 214 203 / 12%);
+  --color-peligro-hover: #ffb4bb;
+
+  /* Formas y profundidad */
+  --sombra-1: 0 1px 2px rgb(0 0 0 / 45%), 0 1px 3px rgb(0 0 0 / 35%);
+  --sombra-2: 0 6px 16px rgb(0 0 0 / 45%);
 }

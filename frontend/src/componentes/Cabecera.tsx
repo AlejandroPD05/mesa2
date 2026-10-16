@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSesion } from '../contexto/contextoSesion'
 import { nombreRol } from '../utils/presentacion'
+import { BotonTema } from './BotonTema'
 
 export function Cabecera() {
   const { usuario, cargando, salir } = useSesion()
@@ -57,6 +58,7 @@ export function Cabecera() {
         </nav>
 
         <div className="sesion">
+          <BotonTema />
           {cargando ? null : usuario ? (
             <>
               <span className="sesion__usuario">

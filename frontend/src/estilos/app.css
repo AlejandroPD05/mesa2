@@ -162,8 +162,8 @@ a {
   width: 2.3rem;
   height: 2.3rem;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--color-primario), #5f83ea);
-  color: #ffffff;
+  background: var(--degradado-marca);
+  color: var(--color-sobre-primario);
   font-size: 0.85rem;
   letter-spacing: 0.5px;
 }
@@ -237,7 +237,7 @@ a {
   border-radius: var(--radio-s);
   border: 1px solid transparent;
   background: var(--color-primario);
-  color: #ffffff;
+  color: var(--color-sobre-primario);
   font-weight: 600;
   line-height: 1.2;
   cursor: pointer;
@@ -280,12 +280,20 @@ a {
 }
 
 .boton--peligro:hover {
-  background: #8c161c;
+  background: var(--color-peligro-hover);
 }
 
 .boton--pequeno {
   padding: 0.35rem 0.7rem;
   font-size: 0.85rem;
+}
+
+.boton-tema {
+  padding-inline: 0.55rem;
+}
+
+.boton-tema svg {
+  display: block;
 }
 
 /* ---------------------------------------------- Formularios */
@@ -537,7 +545,7 @@ textarea {
 .heroe {
   display: grid;
   gap: var(--esp-3);
-  background: linear-gradient(135deg, #24479f, #2b59d9 45%, #5f83ea);
+  background: var(--degradado-heroe);
   color: #ffffff;
   border-radius: var(--radio-m);
   padding: var(--esp-6);
@@ -549,7 +557,7 @@ textarea {
 }
 
 .heroe__entradilla {
-  color: #e6ecfb;
+  color: var(--heroe-suave);
   max-width: 46rem;
 }
 
@@ -638,7 +646,7 @@ textarea {
   height: 100%;
   min-width: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--color-primario), #5f83ea);
+  background: var(--degradado-barra);
 }
 
 .barras__valor {
@@ -850,7 +858,7 @@ textarea {
 .puntuacion__opcion--activa {
   background: var(--color-primario);
   border-color: var(--color-primario);
-  color: #ffffff;
+  color: var(--color-sobre-primario);
 }
 
 .puntuacion__opcion:has(input:focus-visible) {
@@ -859,7 +867,7 @@ textarea {
 }
 
 .puntuacion-estrellas {
-  color: #9a6b00;
+  color: var(--tono-aviso-texto);
   font-size: 1.25rem;
   letter-spacing: 0.1em;
 }
@@ -919,8 +927,8 @@ textarea {
 }
 
 .prosa pre {
-  background: #141b2d;
-  color: #e8edf7;
+  background: var(--color-codigo-fondo);
+  color: var(--color-codigo-texto);
   padding: var(--esp-4);
   border-radius: var(--radio-s);
   overflow-x: auto;
@@ -1024,6 +1032,24 @@ textarea {
   padding-block: var(--esp-5);
   color: var(--color-texto-suave);
   font-size: 0.85rem;
+}
+
+/* ---------------------------------------------- Cambio de tema */
+/* Solo mientras se alterna claro/oscuro: todos los elementos interpolan sus
+   colores y la paleta gira con una transición fluida. */
+@media (prefers-reduced-motion: no-preference) {
+  html.tema-animando,
+  html.tema-animando *,
+  html.tema-animando *::before,
+  html.tema-animando *::after {
+    transition:
+      background-color 0.45s ease,
+      color 0.45s ease,
+      border-color 0.45s ease,
+      box-shadow 0.45s ease,
+      fill 0.45s ease,
+      stroke 0.45s ease !important;
+  }
 }
 
 /* ---------------------------------------------- Movimiento reducido */

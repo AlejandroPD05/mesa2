@@ -12,14 +12,15 @@ semilla de datos) y forma parte del portfolio de **Alejandro Prieto Díez**.
 de Render: el primer acceso tras un rato inactivo puede tardar ~1 min).
 
 - **Backend**: Java 21 · Spring Boot 3.5 · Spring Security (JWT en cookie httpOnly) · Spring Data JPA · Flyway · PostgreSQL (H2 modo PostgreSQL en tests y modo local)
-- **Frontend**: React 19 · TypeScript · Vite · TanStack Query · react-markdown · CSS propio con tokens de diseño (accesibilidad AA, `prefers-reduced-motion`)
-- **Calidad**: 35 tests de API de punta a punta + 22 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
+- **Frontend**: React 19 · TypeScript · Vite · TanStack Query · react-markdown · CSS propio con tokens de diseño (tema claro/oscuro, accesibilidad AA, `prefers-reduced-motion`)
+- **Calidad**: 35 tests de API de punta a punta + 31 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
 
 ---
 
 ## Funcionalidades
 
 **Portal de autoservicio (público)**
+- Interfaz en **claro u oscuro** con un clic: transición fluida y elección recordada entre visitas.
 - Centro de ayuda con búsqueda instantánea sobre artículos en Markdown.
 - Feedback «¿te ha servido?» con contador de votos útil / no útil.
 - Los artículos no publicados quedan como borrador: solo los ve el equipo.
@@ -192,7 +193,7 @@ o `transicionesValidas` cuando un cambio de estado no está permitido.
 
 ```bash
 cd backend && mvn test          # 35 tests de API (Auth, Tickets, KB, Informes)
-cd frontend && npm test         # 22 tests (utilidades, cliente HTTP, insignias)
+cd frontend && npm test         # 31 tests (utilidades, cliente HTTP, insignias, tema)
 ```
 
 Los tests de backend usan `MockMvc` sobre una base H2 en **modo PostgreSQL**
