@@ -12,3 +12,11 @@ backend/datos
 .dockerignore
 *.md
 build-all.ps1
+
+# Herramientas de Neon y secretos locales (nunca dentro de la imagen)
+.neon
+.env*
+node_modules
+neon.ts
+.agents
+package-lock.json
