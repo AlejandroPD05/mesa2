@@ -1,0 +1,23 @@
+# Base de datos local para desarrollo.
+#   docker compose up -d
+# Las credenciales coinciden con los valores por defecto de application.yml.
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: mesa2-db
+    environment:
+      POSTGRES_DB: mesa2
+      POSTGRES_USER: mesa2
+      POSTGRES_PASSWORD: mesa2
+    ports:
+      - "5432:5432"
+    volumes:
+      - mesa2-datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mesa2 -d mesa2"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  mesa2-datos:

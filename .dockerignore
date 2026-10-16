@@ -1,0 +1,14 @@
+# Todo lo que la imagen reconstruye por su cuenta
+frontend/node_modules
+frontend/dist
+frontend/coverage
+backend/target
+backend/datos
+
+# Metadatos y documentación que no hacen falta dentro
+.git
+.github
+.gitignore
+.dockerignore
+*.md
+build-all.ps1

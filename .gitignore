@@ -1,0 +1,29 @@
+# ------------------------------------------------------------------- Java
+backend/target/
+*.class
+
+# ------------------------------------------------------------------- Node
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+
+# La SPA compilada se copia aquí para empaquetar el jar único
+# (lo hacen el Dockerfile y build-all.ps1; nunca se versiona).
+backend/src/main/resources/static/
+
+# Datos locales del perfil `local` (H2 en fichero)
+backend/datos/
+
+# ---------------------------------------------------------------- Entorno
+.env
+.env.*
+*.log
+
+# -------------------------------------------------------------------- IDE
+.idea/
+.vscode/
+*.iml
+
+# --------------------------------------------------------------------- SO
+.DS_Store
+Thumbs.db
