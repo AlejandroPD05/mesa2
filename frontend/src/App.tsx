@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Cabecera } from './componentes/Cabecera'
 import { RutaProtegida } from './rutas/RutaProtegida'
 import { AdminKb } from './paginas/AdminKb'
@@ -24,6 +24,7 @@ export function App() {
         <div className="contenedor">
           <Routes>
             <Route path="/" element={<CentroAyuda />} />
+            <Route path="/ayuda" element={<Navigate to="/" replace />} />
             <Route path="/ayuda/:slug" element={<Articulo />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Registro />} />
