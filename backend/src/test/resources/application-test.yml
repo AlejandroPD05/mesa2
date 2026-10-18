@@ -20,6 +20,11 @@ mesa2:
   cookie:
     nombre: mesa2_sesion
     secure: false
+  limite-login:
+    # Los tests hacen muchos logins seguidos; el límite se prueba a fondo en
+    # LimiteLoginApiTest con propiedades propias.
+    intentos: 0
+    ventana-minutos: 0
 
 logging:
   level:

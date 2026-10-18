@@ -13,7 +13,7 @@ de Render: el primer acceso tras un rato inactivo puede tardar ~1 min).
 
 - **Backend**: Java 21 · Spring Boot 3.5 · Spring Security (JWT en cookie httpOnly) · Spring Data JPA · Flyway · PostgreSQL (H2 modo PostgreSQL en tests y modo local)
 - **Frontend**: React 19 · TypeScript · Vite · TanStack Query · react-markdown · CSS propio con tokens de diseño (tema claro/oscuro, accesibilidad AA, `prefers-reduced-motion`)
-- **Calidad**: 35 tests de API de punta a punta + 31 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
+- **Calidad**: 39 tests de API de punta a punta + 31 tests de frontend · CI en GitHub Actions · Dockerfile multi-stage
 
 ---
 
@@ -181,6 +181,11 @@ o `transicionesValidas` cuando un cambio de estado no está permitido.
   desde el mismo origen (en desarrollo, vía proxy de Vite), CSRF queda
   desactivado a propósito: Lax no viaja en peticiones mutantes cross-site. En
   producción se activa `MESA2_COOKIE_SECURE=true` (requiere HTTPS).
+- **Fuerza bruta en el login**: límite de intentos fallidos por IP en
+  `login`/`registro` (`mesa2.limite-login.*`, por defecto 10 en 15 minutos;
+  `MESA2_LOGIN_INTENTOS`/`MESA2_LOGIN_VENTANA_MINUTOS` para cambiarlo). Al
+  superarlo responde 429 en el mismo formato RFC 7807; un login correcto nunca
+  penaliza.
 - **`open-in-view: false`**: los DTOs se construyen dentro de la transacción y
   las consultas piden lo que necesitan con `@EntityGraph`.
 - **Sin dependencias de UI**: los estilos son CSS propio con tokens (color,
@@ -192,7 +197,7 @@ o `transicionesValidas` cuando un cambio de estado no está permitido.
 ## Tests
 
 ```bash
-cd backend && mvn test          # 35 tests de API (Auth, Tickets, KB, Informes)
+cd backend && mvn test          # 39 tests de API (Auth, Tickets, KB, Informes)
 cd frontend && npm test         # 31 tests (utilidades, cliente HTTP, insignias, tema)
 ```
 

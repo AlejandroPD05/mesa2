@@ -31,8 +31,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain cadena(HttpSecurity http, JwtAuthFilter jwtFilter, ObjectMapper om)
-            throws Exception {
+    public SecurityFilterChain cadena(HttpSecurity http, JwtAuthFilter jwtFilter,
+            LimiteLoginFilter limiteLoginFilter, ObjectMapper om) throws Exception {
         http
                 // CSRF desactivado a propósito: la sesión va en cookie httpOnly con
                 // SameSite=Lax y la SPA se sirve desde el mismo origen (en local, el
@@ -56,7 +56,11 @@ public class SecurityConfig {
                         .accessDeniedHandler((peticion, respuesta, excepcion) ->
                                 problema(respuesta, om, 403, "Sin permiso",
                                         "Tu perfil no tiene acceso a esta operación")))
+                // El JWT se registra primero en la cadena; el límite de intentos
+                // queda justo delante de él para cortar la fuerza bruta contra el
+                // login sin llegar a la autenticación.
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(limiteLoginFilter, JwtAuthFilter.class)
                 .logout(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable);

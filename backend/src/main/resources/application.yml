@@ -35,3 +35,7 @@ mesa2:
     nombre: mesa2_sesion
     # true en producción (requiere HTTPS).
     secure: ${MESA2_COOKIE_SECURE:false}
+  limite-login:
+    # Intentos fallidos por IP y ventana antes de responder 429; 0 lo desactiva.
+    intentos: ${MESA2_LOGIN_INTENTOS:10}
+    ventana-minutos: ${MESA2_LOGIN_VENTANA_MINUTOS:15}

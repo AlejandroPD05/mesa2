@@ -17,6 +17,8 @@ backend/datos/
 # ---------------------------------------------------------------- Entorno
 .env
 .env.*
+# Excepción: la plantilla versionable no lleva valores reales.
+!.env.example
 *.log
 
 # -------------------------------------------------------------------- IDE

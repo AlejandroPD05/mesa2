@@ -12,9 +12,11 @@ public final class AuthDtos {
     public record LoginPeticion(
             @NotBlank(message = "El correo es obligatorio")
             @Email(message = "El correo no tiene un formato válido")
+            @Size(max = 150, message = "El correo es demasiado largo")
             String email,
 
             @NotBlank(message = "La contraseña es obligatoria")
+            @Size(max = 100, message = "La contraseña es demasiado larga")
             String password) {
     }
 
